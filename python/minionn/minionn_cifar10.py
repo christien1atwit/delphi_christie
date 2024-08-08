@@ -330,7 +330,8 @@ if __name__ == "__main__":
 
     pbt = PopulationBasedTraining(
         time_attr="training_iteration",
-        reward_attr="performance",
+        #metric="performance",
+        mode="max",
         perturbation_interval=10,
         hyperparam_mutations={
             "lr": lambda: random.uniform(.0001, 1),
@@ -339,7 +340,7 @@ if __name__ == "__main__":
 
     run(Cifar10Model,
         name=args.test_name,
-        local_dir=args.dir,
+        storage_path=args.dir,
         scheduler=pbt,
         resume=False,
         reuse_actors=True,
